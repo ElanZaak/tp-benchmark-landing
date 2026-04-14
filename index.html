@@ -424,10 +424,10 @@
               <div class="fg"><label>Apellido *</label><input name="LNAME" type="text" placeholder="García" required/></div>
             </div>
             <div class="fg"><label>Correo electrónico *</label><input name="EMAIL" type="email" placeholder="ana@empresa.com" required/></div>
-            <div class="fg"><label>Empresa *</label><input name="COMPANY" type="text" placeholder="Nombre de tu empresa" required/></div>
+            <div class="fg"><label>Empresa *</label><input name="EMPRESA" type="text" placeholder="Nombre de tu empresa" required/></div>
             <div class="fg">
               <label>Cargo</label>
-              <select name="CARGO">
+              <select name="MMERGE6">
                 <option value="">Selecciona tu cargo</option>
                 <option>CEO / Director General</option>
                 <option>CFO / Director Financiero</option>
@@ -628,7 +628,7 @@
   form.addEventListener('submit',function(e){
     e.preventDefault(); err.style.display='none';
     const fn=form.FNAME.value.trim(), ln=form.LNAME.value.trim(),
-          em=form.EMAIL.value.trim(), co=form.COMPANY.value.trim();
+          em=form.EMAIL.value.trim(), co=form.EMPRESA.value.trim();
     if(!fn||!ln) return showErr('Por favor ingresa tu nombre completo.');
     if(!em||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) return showErr('Ingresa un correo electrónico válido.');
     if(!co) return showErr('Por favor ingresa el nombre de tu empresa.');
@@ -637,9 +637,9 @@
     const url=MAILCHIMP_URL.replace('/post?','/post-json?')
       +'&c=mcCB&EMAIL='+encodeURIComponent(em)
       +'&FNAME='+encodeURIComponent(fn)+'&LNAME='+encodeURIComponent(ln)
-      +'&COMPANY='+encodeURIComponent(co)
-      +'&CARGO='+encodeURIComponent(form.CARGO.value)
-      +'&REPORTE=Transfer+Pricing+4Q2025';
+      +'&EMPRESA='+encodeURIComponent(co)
+      +'&MMERGE6='+encodeURIComponent(form.MMERGE6.value)
+      +'&REPORTE=Transfer+Pricing+1T2026';
     const t=setTimeout(showSuccess,8000);
     window.mcCB=function(d){ clearTimeout(t); showSuccess(); };
     const s=document.createElement('script'); s.src=url;
